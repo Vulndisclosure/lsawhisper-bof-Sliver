@@ -1,5 +1,5 @@
 # LSA Whisperer BOF
-# ported by @Vulndisclosure
+# ported for SliverC2 by @Vulndisclosure
 ![](./assets/lsawhisper-ppt.png)
 
 A Cobalt Strike...SLIVER! Beacon Object File (BOF) port of [LSA Whisperer](https://github.com/EvanMcBroom/lsa-whisperer) — the tool that talks directly to Windows authentication packages through the LSA untrusted/trusted client interface, without touching LSASS process memory even when PPL and Credential Guard is enabled.
