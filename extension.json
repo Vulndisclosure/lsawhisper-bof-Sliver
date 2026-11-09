@@ -1,0 +1,102 @@
+{
+  "name": "lsa-whisperer",
+  "package_name": "lsa-whisperer-bof",
+  "version": "1.0.0",
+  "extension_author": "@Vulndisclosure",
+  "original_author": "Evan McBroom (SpecterOps)",
+  "repo_url": "",
+  "commands": [
+    {
+      "command_name": "lsa-ntlmv1",
+      "help": "MSV1_0 operations via selector: credkey / strongcredkey / ntlmv1.",
+      "long_help": "Synopsis: lsa-ntlmv1 -- -selector <credkey|strongcredkey|ntlmv1> [-luid <LUID>] [-challenge <hex>]\n\nValid selectors: credkey, strongcredkey, ntlmv1\nDefault selector: ntlmv1\n\nExamples:\n  lsa-ntlmv1 -- -selector credkey -luid 0x3e7\n  lsa-ntlmv1 -- -selector ntlmv1 -challenge 1122334455667788",
+      "entrypoint": "go",
+      "depends_on": "coff-loader",
+      "arguments": [
+        { "name": "selector", "type": "string", "desc": "credkey | strongcredkey | ntlmv1 (default: ntlmv1).", "optional": true },
+        { "name": "luid", "type": "string", "desc": "LUID or 0.", "optional": true },
+        { "name": "challenge", "type": "string", "desc": "Hex challenge (default 1122334455667788).", "optional": true }
+      ],
+      "files": [
+        { "os": "windows", "arch": "amd64", "path": "build/msv1_0_bof.x64.o" },
+        { "os": "windows", "arch": "386", "path": "build/msv1_0_bof.x86.o" }
+      ]
+    },
+    {
+      "command_name": "lsa-dump",
+      "help": "Dump Kerberos tickets / klist / purge via selector.",
+      "long_help": "Synopsis: lsa-dump -- -selector <klist|dump|purge> [-luid <LUID>] [-server <name>]\n\nValid selectors: klist, dump, purge\nDefault selector: dump\n\nExamples:\n  lsa-dump -- -selector klist\n  lsa-dump -- -selector dump -luid 0x3e7\n  lsa-dump -- -selector purge -server krbtgt",
+      "entrypoint": "go",
+      "depends_on": "coff-loader",
+      "arguments": [
+        { "name": "selector", "type": "string", "desc": "klist | dump | purge (default: dump).", "optional": true },
+        { "name": "luid", "type": "string", "desc": "LUID or 0.", "optional": true },
+        { "name": "server", "type": "string", "desc": "Server filter for purge (optional).", "optional": true }
+      ],
+      "files": [
+        { "os": "windows", "arch": "amd64", "path": "build/kerberos_bof.x64.o" },
+        { "os": "windows", "arch": "386", "path": "build/kerberos_bof.x86.o" }
+      ]
+    },
+    {
+      "command_name": "lsa-ssocookie",
+      "help": "Get Entra ID SSO cookie.",
+      "long_help": "Synopsis: lsa-ssocookie <selector> [LUID]\nSelector must be: ssocookie\nExample: lsa-ssocookie ssocookie 0x3e7",
+      "entrypoint": "go",
+      "depends_on": "coff-loader",
+      "arguments": [
+        { "name": "selector", "type": "string", "desc": "Must be 'ssocookie'.", "optional": false },
+        { "name": "luid", "type": "string", "desc": "LUID or 0.", "optional": true }
+      ],
+      "files": [
+        { "os": "windows", "arch": "amd64", "path": "build/cloudap_bof.x64.o" },
+        { "os": "windows", "arch": "386", "path": "build/cloudap_bof.x86.o" }
+      ]
+    },
+    {
+      "command_name": "lsa-devicessocookie",
+      "help": "Get device SSO cookie.",
+      "long_help": "Synopsis: lsa-devicessocookie <selector> [LUID]\nSelector must be: devicessocookie\nExample: lsa-devicessocookie devicessocookie 0x3e7",
+      "entrypoint": "go",
+      "depends_on": "coff-loader",
+      "arguments": [
+        { "name": "selector", "type": "string", "desc": "Must be 'devicessocookie'.", "optional": false },
+        { "name": "luid", "type": "string", "desc": "LUID or 0.", "optional": true }
+      ],
+      "files": [
+        { "os": "windows", "arch": "amd64", "path": "build/cloudap_bof.x64.o" },
+        { "os": "windows", "arch": "386", "path": "build/cloudap_bof.x86.o" }
+      ]
+    },
+    {
+      "command_name": "lsa-enterprisesso",
+      "help": "Get AD FS enterprise SSO cookie.",
+      "long_help": "Synopsis: lsa-enterprisesso <selector> [LUID]\nSelector must be: enterprisesso\nExample: lsa-enterprisesso enterprisesso 0x3e7",
+      "entrypoint": "go",
+      "depends_on": "coff-loader",
+      "arguments": [
+        { "name": "selector", "type": "string", "desc": "Must be 'enterprisesso'.", "optional": false },
+        { "name": "luid", "type": "string", "desc": "LUID or 0.", "optional": true }
+      ],
+      "files": [
+        { "os": "windows", "arch": "amd64", "path": "build/cloudap_bof.x64.o" },
+        { "os": "windows", "arch": "386", "path": "build/cloudap_bof.x86.o" }
+      ]
+    },
+    {
+      "command_name": "lsa-cloudinfo",
+      "help": "Query cloud provider info and status.",
+      "long_help": "Synopsis: lsa-cloudinfo <selector> [LUID]\nSelector must be: info\nExample: lsa-cloudinfo info 0x3e7",
+      "entrypoint": "go",
+      "depends_on": "coff-loader",
+      "arguments": [
+        { "name": "selector", "type": "string", "desc": "Must be 'info'.", "optional": false },
+        { "name": "luid", "type": "string", "desc": "LUID or 0.", "optional": true }
+      ],
+      "files": [
+        { "os": "windows", "arch": "amd64", "path": "build/cloudap_bof.x64.o" },
+        { "os": "windows", "arch": "386", "path": "build/cloudap_bof.x86.o" }
+      ]
+    }
+  ]
+}
