@@ -3,7 +3,8 @@
 ![](./assets/lsawhisper-ppt.png)
 
 A Cobalt Strike...SLIVER! Beacon Object File (BOF) port of [LSA Whisperer](https://github.com/EvanMcBroom/lsa-whisperer) — the tool that talks directly to Windows authentication packages through the LSA untrusted/trusted client interface, without touching LSASS process memory even when PPL and Credential Guard is enabled.
-
+![klist](./assets/Screenshot_20261109_224411_klist.jpg)
+![kdmp](./assets/Screenshot_20261109_231613_kirbidmp.jpg)
 ## Why This Exists
 
 LSA Whisperer by [Evan McBroom](https://github.com/EvanMcBroom) (SpecterOps) demonstrated that you can recover DPAPI credential keys, extract cloud SSO tokens, and interact with Kerberos — all through legitimate `LsaCallAuthenticationPackage` API calls. No memory reads, no process injection, no handles to LSASS.
